@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShopMVC", "OnlineShop
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShopMVC.Tests", "OnlineShopMVC.Tests\OnlineShopMVC.Tests.csproj", "{753E662C-634B-4FBD-BA1F-9B650980A94A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Models\Model.csproj", "{1ED43866-80B1-46C7-9D3B-EE338C67408D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{1ED43866-80B1-46C7-9D3B-EE338C67408D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{6E160EFE-78C0-4076-926E-13A034E482E1}"
 EndProject
