@@ -17,9 +17,15 @@ namespace OnlineShopMVC.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional, controller = "admin" },
+                new { action = "Index", id = UrlParameter.Optional, controller = "Admin" },
                 new[] { "OnlineShopMVC.Areas.Admin.Controllers" }
+            );
 
+            context.MapRoute(
+                "Login",
+                "Login/{controller}/{action}/{id}",
+                new { action = "Index", id = UrlParameter.Optional, controller = "Login" },
+                new[] { "OnlineShopMVC.Areas.Admin.Controllers" }
             );
         }
     }
