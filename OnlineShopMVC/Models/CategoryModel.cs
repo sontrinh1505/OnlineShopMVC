@@ -26,5 +26,24 @@ namespace Models
 
 
         }
+
+        public int Create(Category category)
+        {
+            var parameters = new SqlParameter[]
+            {
+                new SqlParameter("@Name", category.Name),
+                new SqlParameter("@Alias", category.Alias),
+                new SqlParameter("@ParentId", category.ParentId),
+                new SqlParameter("@Order", category.Order),
+                new SqlParameter("@Status", category.Status),
+            };
+
+            var res = context.Database.ExecuteSqlCommand("sp_Category_Insert @Name, @Alias, @ParentId, @Order, @Status", parameters);
+
+            return res;
+        }
+
+
+        
     }
 }

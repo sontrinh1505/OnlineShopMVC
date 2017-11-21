@@ -1,0 +1,7 @@
+﻿.x_panel .x_content #create-category #Status{
+    padding-bottom: 8px;
+}
+
+.x_panel .x_content #create-category .btn-primary a{
+    color: white;
+}

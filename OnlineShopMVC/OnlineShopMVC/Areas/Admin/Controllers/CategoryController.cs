@@ -1,4 +1,5 @@
 ﻿using Models;
+using Models.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace OnlineShopMVC.Areas.Admin.Controllers
         }
 
         // GET: Admin/Category/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -31,13 +33,26 @@ namespace OnlineShopMVC.Areas.Admin.Controllers
 
         // POST: Admin/Category/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Category category)
         {
             try
             {
+                if(ModelState.IsValid)
+                {
+                    var res = new CategoryModel().Create(category);
+
+                    if(res > 0)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    ModelState.AddModelError("", "The Category unsuccessfully create");
+             
+                }
+                return View(category);
                 // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
+                
             }
             catch
             {
