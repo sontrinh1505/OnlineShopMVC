@@ -8,9 +8,12 @@ namespace OnlineShopMVC.Areas.Admin.Models
 {
     public class LoginModel
     {
-        [Required]
+        [Required(ErrorMessage ="Please, enter username")]
         public string UserName { set; get; }
+
+        [Required(ErrorMessage ="Please, enter password")]
         public string PassWord { set; get; }
+
         public bool RememberMe { set; get; }
     }
 }

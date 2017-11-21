@@ -7,7 +7,7 @@ using System.Web.Mvc;
 namespace OnlineShopMVC.Areas.Admin.Controllers
 {
     [Authorize]
-    public class AdminController : Controller
+    public class AdminController : BaseController
     {
         // GET: Admin/Home
         public ActionResult Index()

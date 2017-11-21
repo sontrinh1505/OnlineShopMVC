@@ -33,20 +33,20 @@
         <div class="login_wrapper">
             <div class="animate form login_form">
                 <section class="login_content">
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("Index", "Login", FormMethod.Post))
                     {
                         @Html.AntiForgeryToken()
                        
 
                         <h1>Login Form</h1>
-                        @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
+                        @Html.ValidationSummary(false, null, new { @class = "alert alert-danger" })
                         <div>
                             @Html.TextBoxFor(model => model.UserName, new { @class= "form-control", @placeholder= "Username" })
-                           @* <input type="text" class="form-control" placeholder="Username" required="" />*@
+                            @*@Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })*@
                         </div>
                         <div>
                             @Html.TextBoxFor(model => model.PassWord, new { @class = "form-control", @placeholder = "Password", @type = "password" })
-                            @*<input type="password" class="form-control" placeholder="Password" required="" />*@
+                            @*@Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })*@
                         </div>
                         <div>
                             @Html.CheckBoxFor(model => model.RememberMe)

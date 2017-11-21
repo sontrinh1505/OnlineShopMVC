@@ -1,4 +1,4 @@
-﻿using Models.Framework;
+﻿using Models.EF;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -10,11 +10,11 @@ namespace Models
 {
     public class CategoryModel
     {
-        private OnlineShopMVCDbContext context = null;
+        private OnlineShopDbContext context = null;
 
         public CategoryModel()
         {
-            context = new OnlineShopMVCDbContext();
+            context = new OnlineShopDbContext();
         }
 
         public List<Category> ListAll()
@@ -27,21 +27,21 @@ namespace Models
 
         }
 
-        public int Create(Category category)
-        {
-            var parameters = new SqlParameter[]
-            {
-                new SqlParameter("@Name", category.Name),
-                new SqlParameter("@Alias", category.Alias),
-                new SqlParameter("@ParentId", category.ParentId),
-                new SqlParameter("@Order", category.Order),
-                new SqlParameter("@Status", category.Status),
-            };
+        //public int Create(Category category)
+        //{
+        //    var parameters = new SqlParameter[]
+        //    {
+        //        new SqlParameter("@Name", category.Name),
+        //        new SqlParameter("@Alias", category.Alias),
+        //        new SqlParameter("@ParentId", category.ParentId),
+        //        new SqlParameter("@Order", category.Order),
+        //        new SqlParameter("@Status", category.Status),
+        //    };
 
-            var res = context.Database.ExecuteSqlCommand("sp_Category_Insert @Name, @Alias, @ParentId, @Order, @Status", parameters);
+        //    var res = context.Database.ExecuteSqlCommand("sp_Category_Insert @Name, @Alias, @ParentId, @Order, @Status", parameters);
 
-            return res;
-        }
+        //    return res;
+        //}
 
 
         

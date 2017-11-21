@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace OnlineShopMVC.Areas.Admin.Controllers
 {
     [Authorize]
-    public class CategoryController : Controller
+    public class CategoryController : BaseController
     {
         // GET: Admin/Category
         public ActionResult Index()
@@ -32,33 +32,33 @@ namespace OnlineShopMVC.Areas.Admin.Controllers
         }
 
         // POST: Admin/Category/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Category category)
-        {
-            try
-            {
-                if(ModelState.IsValid)
-                {
-                    var res = new CategoryModel().Create(category);
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create(Category category)
+        //{
+        //    try
+        //    {
+        //        if(ModelState.IsValid)
+        //        {
+        //            var res = new CategoryModel().Create(category);
 
-                    if(res > 0)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                    ModelState.AddModelError("", "The Category unsuccessfully create");
+        //            if(res > 0)
+        //            {
+        //                return RedirectToAction("Index");
+        //            }
+        //            ModelState.AddModelError("", "The Category unsuccessfully create");
              
-                }
-                return View(category);
-                // TODO: Add insert logic here
+        //        }
+        //        return View(category);
+        //        // TODO: Add insert logic here
 
                 
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
         // GET: Admin/Category/Edit/5
         public ActionResult Edit(int id)
