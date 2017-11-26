@@ -21,12 +21,19 @@ namespace OnlineShopMVC.Areas.Admin
                 new[] { "OnlineShopMVC.Areas.Admin.Controllers" }
             );
 
-            context.MapRoute(
-                "Login",
-                "Login/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional, controller = "Login" },
-                new[] { "OnlineShopMVC.Areas.Admin.Controllers" }
-            );
+            //context.MapRoute(
+            //    "Login",
+            //    "Login/{controller}/{action}/{id}",
+            //    new { action = "Index", id = UrlParameter.Optional, controller = "Login" },
+            //    new[] { "OnlineShopMVC.Areas.Admin.Controllers" }
+            //);
+
+            //context.MapRoute(
+            //    "User",
+            //    "User/{controller}/{action}/{id}",
+            //    new { action = "Index", id = UrlParameter.Optional, controller = "User" },
+            //    new[] { "OnlineShopMVC.Areas.Admin.Controllers" }
+            //);
         }
     }
 }

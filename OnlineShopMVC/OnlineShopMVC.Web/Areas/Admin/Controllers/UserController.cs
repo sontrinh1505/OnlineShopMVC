@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using PagedList;
 using Data.Models;
 using OnlineShopMVC.DTO;
+using OnlineShopMVC.Common;
 
 namespace OnlineShopMVC.Areas.Admin.Controllers
 {
@@ -57,6 +58,30 @@ namespace OnlineShopMVC.Areas.Admin.Controllers
                     ModelState.AddModelError("", "Can not create user.");
                 }
             }
+
+            return View(user);
+        }
+
+
+
+        [HttpGet]
+        public ActionResult Edit(long id)
+        {
+            var user = _userService.GetById(id).ToViewModel();
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(UserViewModel user)
+        {
+            if (ModelState.IsValid)
+            {
+
+                _userService.Update(user.ToModel());
+                _userService.Save();
+                return RedirectToAction("Index", "User");
+            }
+            ModelState.AddModelError("", "Can not update user.");
 
             return View(user);
         }

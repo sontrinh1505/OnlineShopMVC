@@ -98,6 +98,8 @@ namespace OnlineShopMVC.Service
 
         public void Update(User User)
         {
+            User.ModifiedBy = SessionHelper.GetSession().UserID;
+            User.ModifiedDate = DateTime.Now;
             _userRepository.Update(User);
         }
 

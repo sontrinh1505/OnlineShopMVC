@@ -29,5 +29,7 @@ namespace OnlineShopMVC.Common
 
             return strBuilder.ToString();
         }
+
+
     }
 }

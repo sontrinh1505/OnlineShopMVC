@@ -46,6 +46,7 @@
                         <th>Phone</th>
                         <th>Address</th>             
                         <th>Created Date</th>
+                        <th>Modified Date</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -72,10 +73,21 @@
                                             if (item.CreatedDate != null)
                                             {
                                                 createdDate = @item.CreatedDate.Value.ToString("dd/MM/yyyy");
-                                            } 
+                                            }
                                         }
-                                    @createdDate
+                                        @createdDate
+
+                                    <td>
+                                        @{
+                                            string modifiedDate = "";
+                                            if (item.ModifiedDate != null)
+                                            {
+                                                modifiedDate = @item.ModifiedDate.Value.ToString("dd/MM/yyyy");
+                                            }
+                                        }
+                                        @modifiedDate
                                     </td>
+
                                     @{
                                         string status = "Blocked";
                                         if (item.Status)
@@ -85,7 +97,7 @@
                                     }
                                     <td>@status</td>
 
-                                    <td>@Html.ActionLink("Edit","Edit","User",new {@class="edit" }) @Html.ActionLink("Delete", "Delete", "User", new { @class = "delete" })</td>
+                                    <td>@Html.ActionLink("Edit","Edit","User", new { @id = @item.ID}, new {@class="edit" }) @Html.ActionLink("Delete", "Delete", "User", new { @id = @item.ID }, new { @class = "delete" })</td>
                                 </tr>
                             }
 
