@@ -1,6 +1,6 @@
 namespace Data.Migrations
 {
-    using Models.Model;
+    using Data.Models;
     using OnlineShopMVC.Common;
     using System;
     using System.Data.Entity;
@@ -31,9 +31,11 @@ namespace Data.Migrations
                     PassWord = Encryptor.MD5Hash("123456"),
                     Email = "Administrator@gmail.com",
                     Address = "Binh Phuoc, Viet Nam",
+                    CreatedBy = -1,
+                    Name = "Admin",
+                    Phone = "0123456789",
                     CreatedDate = DateTime.Now,
                     Status = true
-
                 };
 
                 context.Users.Add(user);

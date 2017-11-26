@@ -1,4 +1,4 @@
-﻿using Models.Model;
+﻿using Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

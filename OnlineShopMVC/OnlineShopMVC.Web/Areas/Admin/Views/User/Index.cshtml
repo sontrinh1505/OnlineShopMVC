@@ -1,13 +1,18 @@
-﻿@{
+﻿@using PagedList.Mvc
+
+@model  PagedList.IPagedList<OnlineShopMVC.DTO.UserViewModel>
+@{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 
+
+
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Categories</h2>
+            <h2>Users</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
                     <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -36,12 +41,13 @@
                     <tr>
                         <th>User Name</th>
                         <th>PassWord</th>
-                        <th>Name</th>                     
+                        <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th>Address</th>
-                        <th>Status</th>
+                        <th>Address</th>             
                         <th>Created Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
 
@@ -50,6 +56,7 @@
                     @{
                         if (Model != null)
                         {
+
                             foreach (var item in Model)
                             {
                                 <tr>
@@ -58,19 +65,42 @@
                                     <td>@item.Name</td>
                                     <td>@item.Email</td>
                                     <td>@item.Phone</td>
-                                    <td>@item.Address</td>                                  
-                                    <td>@(item.Status.GetValueOrDefault(false) ? "Active" : "Blocked")</td>
-                                    <td>@(item.CreatedDate.HasValue ? @item.CreatedDate.Value.ToString("dd/MM/yyyy") : "")</td>
+                                    <td>@item.Address</td>                                
+                                    <td>
+                                        @{
+                                            string createdDate = "";
+                                            if (item.CreatedDate != null)
+                                            {
+                                                createdDate = @item.CreatedDate.Value.ToString("dd/MM/yyyy");
+                                            } 
+                                        }
+                                    @createdDate
+                                    </td>
+                                    @{
+                                        string status = "Blocked";
+                                        if (item.Status)
+                                        {
+                                            status = "Active";
+                                        }
+                                    }
+                                    <td>@status</td>
+
+                                    <td>@Html.ActionLink("Edit","Edit","User",new {@class="edit" }) @Html.ActionLink("Delete", "Delete", "User", new { @class = "delete" })</td>
                                 </tr>
                             }
 
                         }
                     }
-                   
+
                 </tbody>
             </table>
+            
         </div>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page, @pageSize = 10 }));
     </div>
 </div>
+
+
+
 
 

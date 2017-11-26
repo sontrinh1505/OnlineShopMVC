@@ -51,22 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\About.cs" />
-    <Compile Include="Model\Category.cs" />
-    <Compile Include="Model\Contact.cs" />
-    <Compile Include="Model\Content.cs" />
-    <Compile Include="Model\ContentTag.cs" />
-    <Compile Include="Model\Feedback.cs" />
-    <Compile Include="Model\Footer.cs" />
-    <Compile Include="Model\Menu.cs" />
-    <Compile Include="Model\MenuType.cs" />
-    <Compile Include="Model\OnlineShopDbContext.cs" />
-    <Compile Include="Model\Product.cs" />
-    <Compile Include="Model\ProductCategory.cs" />
-    <Compile Include="Model\Slide.cs" />
-    <Compile Include="Model\SystemConfig.cs" />
-    <Compile Include="Model\Tag.cs" />
-    <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

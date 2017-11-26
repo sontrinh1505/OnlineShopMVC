@@ -1,5 +1,5 @@
 ﻿
-@model OnlineShopMVC.Areas.Admin.Models.UserModel
+@model OnlineShopMVC.DTO.UserViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -37,7 +37,7 @@
 
 
 
-            @using (Html.BeginForm("create", "Account", FormMethod.Post, new { @class = "form-horizontal form-label-left", @id = "create-category" }))
+            @using (Html.BeginForm("create", "User", FormMethod.Post, new { @class = "form-horizontal form-label-left", @id = "create-category" }))
             {
                 @Html.AntiForgeryToken()
 

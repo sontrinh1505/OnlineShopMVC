@@ -1,4 +1,4 @@
-namespace Models.Model
+namespace Data.Models
 {
     using System;
     using System.Collections.Generic;
@@ -26,13 +26,11 @@ namespace Models.Model
 
         public DateTime? CreatedDate { get; set; }
 
-        [StringLength(50)]
-        public string CreatedBy { get; set; }
+        public long CreatedBy { get; set; }
 
         public DateTime? ModifiedDate { get; set; }
 
-        [StringLength(50)]
-        public string ModifiedBy { get; set; }
+        public long ModifiedBy { get; set; }
 
         [StringLength(250)]
         public string MetaKeywords { get; set; }
@@ -40,7 +38,7 @@ namespace Models.Model
         [StringLength(10)]
         public string MetaDescriptions { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
 
         public bool? ShowOnHome { get; set; }
     }

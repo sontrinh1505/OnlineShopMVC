@@ -1,5 +1,5 @@
 ﻿using Data.Infrastructure;
-using Models.Model;
+using Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

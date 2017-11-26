@@ -1,18 +1,36 @@
 ﻿using OnlineShopMVC.Areas.Admin.Models;
+using OnlineShopMVC.Extensions;
+using OnlineShopMVC.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using Data.Models;
+using OnlineShopMVC.DTO;
 
 namespace OnlineShopMVC.Areas.Admin.Controllers
 {
     public class UserController : BaseController
     {
-        // GET: Admin/Account
-        public ActionResult Index()
+
+        IUserService _userService;
+
+        public UserController(IUserService _userService)
         {
-            return View();
+            this._userService = _userService;
+        }
+
+
+        // GET: Admin/Account
+        public ActionResult Index(int page = 1, int pageSize = 10 )
+        {
+            var userList = _userService.GetAll().ToList();
+            var userListVM = userList.OrderBy(x => x.UserName).ToListViewModel();
+            var result = userListVM.ToPagedList(page, pageSize);
+            return View(result);
+                      
         }
 
 
@@ -23,28 +41,24 @@ namespace OnlineShopMVC.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(string a)
+        public ActionResult Create(UserViewModel user)
         {
             if(ModelState.IsValid)
             {
-                //var userDao = new UserDao();
 
-                //user.PassWord = Encryptor.MD5Hash(user.PassWord);
-                //user.CreatedDate = DateTime.Now;
-                //user.CreatedBy = SessionHelper.GetSession().UserID.ToString();
-                //var result = userDao.Insert(user);
+                var result = _userService.Add(user.ToModel());
 
-                //if(result > 0)
-                //{
-                //    return RedirectToAction("Index", "Account");
-                //}
-                //else
-                //{
-                //    ModelState.AddModelError("", "Can not create user.");
-                //}
+                if (result != null)
+                {
+                    return RedirectToAction("Index", "User");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Can not create user.");
+                }
             }
 
-            return View();
+            return View(user);
         }
     }
 }

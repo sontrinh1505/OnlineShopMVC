@@ -5,3 +5,19 @@
 .x_panel .x_content #create-category .btn-primary a{
     color: white;
 }
+
+.error{
+    color: red;
+}
+
+.edit{
+    background-color: #1abb9c;
+    padding: 5px;
+    color: white;
+}
+
+.delete{
+    background-color: red;
+    padding: 5px;
+    color: white;
+}

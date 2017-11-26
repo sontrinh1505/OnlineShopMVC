@@ -23,6 +23,8 @@
 
     <!-- Custom Theme Style -->
     <link href="/Assets/Admin/build/css/custom.min.css" rel="stylesheet">
+
+    <link href="~/Areas/Admin/Custom/Custom.css" rel="stylesheet" />
 </head>
 
 <body class="login">
@@ -39,7 +41,7 @@
                        
 
                         <h1>Login Form</h1>
-                        @Html.ValidationSummary(false, null, new { @class = "alert alert-danger" })
+                        @Html.ValidationSummary(false, null, new { @class = "error" })
                         <div>
                             @Html.TextBoxFor(model => model.UserName, new { @class= "form-control", @placeholder= "Username" })
                             @*@Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })*@

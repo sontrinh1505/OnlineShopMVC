@@ -1,4 +1,4 @@
-namespace Models.Model
+namespace Data.Models
 {
     using System;
     using System.Collections.Generic;
@@ -6,14 +6,22 @@ namespace Models.Model
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Tag")]
-    public partial class Tag
+    [Table("SystemConfig")]
+    public partial class SystemConfig
     {
         [StringLength(50)]
         public string ID { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(250)]
         public string Name { get; set; }
+
+        [StringLength(50)]
+        public string Type { get; set; }
+
+        [StringLength(250)]
+        public string Value { get; set; }
+
+        public bool Status { get; set; }
     }
 }

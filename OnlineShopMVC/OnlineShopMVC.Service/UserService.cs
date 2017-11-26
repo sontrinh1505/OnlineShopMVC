@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Models.Model;
 using Data.Infrastructure;
 using Data.Repositories;
 using OnlineShopMVC.Common;
+using Data.Models;
+using PagedList;
 
 namespace OnlineShopMVC.Service
 {
@@ -25,13 +26,13 @@ namespace OnlineShopMVC.Service
 
         IEnumerable<User> GetAll();
 
-        IEnumerable<User> GetAllPaging(int page, int pageSize, string sort, out int totalRow);
+        IEnumerable<User> GetAllPaging(int page, int pageSize);
 
         IEnumerable<User> GetAll(string keyWord);
 
         IEnumerable<User> Search(string keyWord, int page, int pageSize, string sort, out int totalRow);
 
-        User GetById(int id);
+        User GetById(long id);
 
         void Save();
     }
@@ -46,12 +47,15 @@ namespace OnlineShopMVC.Service
             this._unitOfWork = unitOfWork;
         }
 
-        public User Add(User User)
+        public User Add(User user)
         {
-            var user = _userRepository.Add(User);
+            user.CreatedBy = SessionHelper.GetSession().UserID;
+            user.CreatedDate = DateTime.Now;
+            user.PassWord = Encryptor.MD5Hash(user.PassWord);
+            var result = _userRepository.Add(user);
             _unitOfWork.Commit();
 
-            return user;
+            return result;
         }
 
         public User Delete(int id)
@@ -73,7 +77,7 @@ namespace OnlineShopMVC.Service
                 return _userRepository.GetAll(includes);
         }
 
-        public User GetById(int id)
+        public User GetById(long id)
         {
             return _userRepository.GetSingleById(id);
         }
@@ -97,11 +101,11 @@ namespace OnlineShopMVC.Service
             _userRepository.Update(User);
         }
 
-        public IEnumerable<User> GetAllPaging(int page, int pageSize, string sort, out int totalRow)
+        public IEnumerable<User> GetAllPaging(int page, int pageSize)
         {
-            var query = _userRepository.GetMulti(x => x.Status == true).ToList();
-            totalRow = query.Count();
-            return query.Skip((page - 1) * pageSize).Take(pageSize);
+            var query = _userRepository.GetMulti(x => x.Status == true).OrderBy(x => x.UserName).ToList();
+             
+            return query.ToPagedList(page, pageSize);
         }
 
         public int Login(string UserName, string Password)

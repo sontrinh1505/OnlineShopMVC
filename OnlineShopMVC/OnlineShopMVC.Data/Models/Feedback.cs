@@ -1,4 +1,4 @@
-namespace Models.Model
+namespace Data.Models
 {
     using System;
     using System.Collections.Generic;
@@ -28,6 +28,6 @@ namespace Models.Model
 
         public DateTime? ModifiedDate { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
     }
 }

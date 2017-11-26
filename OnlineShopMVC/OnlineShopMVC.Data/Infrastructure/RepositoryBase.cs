@@ -49,7 +49,7 @@ namespace Data.Infrastructure
             return dbSet.Remove(entity);
         }
 
-        public virtual T Delete(int id)
+        public virtual T Delete(long id)
         {
             var entity = dbSet.Find(id);
             return dbSet.Remove(entity);
@@ -62,7 +62,7 @@ namespace Data.Infrastructure
                 dbSet.Remove(obj);
         }
 
-        public virtual T GetSingleById(int id)
+        public virtual T GetSingleById(long id)
         {
             return dbSet.Find(id);
         }

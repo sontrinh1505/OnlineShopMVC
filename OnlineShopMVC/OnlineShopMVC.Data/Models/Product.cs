@@ -1,4 +1,4 @@
-namespace Models.Model
+namespace Data.Models
 {
     using System;
     using System.Collections.Generic;
@@ -6,35 +6,51 @@ namespace Models.Model
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("About")]
-    public partial class About
+    [Table("Product")]
+    public partial class Product
     {
         public long ID { get; set; }
 
         [StringLength(10)]
         public string Name { get; set; }
 
-        [StringLength(250)]
-        public string MetaTitle { get; set; }
+        [StringLength(50)]
+        public string Code { get; set; }
 
         [StringLength(250)]
-        public string Image { get; set; }
+        public string MetaTitle { get; set; }
 
         [StringLength(500)]
         public string Description { get; set; }
 
+        [StringLength(250)]
+        public string Image { get; set; }
+
+        [Column(TypeName = "xml")]
+        public string MoreImages { get; set; }
+
+        public bool? IncludeVAT { get; set; }
+
+        public decimal? PromotionPrice { get; set; }
+
+        public decimal? Price { get; set; }
+
+        public int? Quantity { get; set; }
+
+        public long? CategoryID { get; set; }
+
         [Column(TypeName = "ntext")]
         public string Detail { get; set; }
 
+        public int? Waranty { get; set; }
+
         public DateTime? CreatedDate { get; set; }
 
-        [StringLength(50)]
-        public string CreatedBy { get; set; }
+        public long CreatedBy { get; set; }
 
         public DateTime? ModifiedDate { get; set; }
 
-        [StringLength(50)]
-        public string ModifiedBy { get; set; }
+        public long ModifiedBy { get; set; }
 
         [StringLength(250)]
         public string MetaKeywords { get; set; }
@@ -42,6 +58,10 @@ namespace Models.Model
         [StringLength(10)]
         public string MetaDescriptions { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
+
+        public DateTime? TopHot { get; set; }
+
+        public int? ViewCount { get; set; }
     }
 }

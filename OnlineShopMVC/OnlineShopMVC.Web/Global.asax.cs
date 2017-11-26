@@ -1,4 +1,5 @@
-﻿using Owin;
+﻿using OnlineShopMVC.Mapping;
+using Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace OnlineShopMVC
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             AutofacConfig.AutofacConfig.ConfigureContainer();
+            AutoMapperConfiguration.configure();
         }
     }
 }

@@ -60,7 +60,30 @@
     <Compile Include="Migrations\201711251952347_Init.Designer.cs">
       <DependentUpon>201711251952347_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711261144259_ChangeStatusType.cs" />
+    <Compile Include="Migrations\201711261144259_ChangeStatusType.Designer.cs">
+      <DependentUpon>201711261144259_ChangeStatusType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711261610501_UpdateModels.cs" />
+    <Compile Include="Migrations\201711261610501_UpdateModels.Designer.cs">
+      <DependentUpon>201711261610501_UpdateModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\About.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\Content.cs" />
+    <Compile Include="Models\ContentTag.cs" />
+    <Compile Include="Models\Feedback.cs" />
+    <Compile Include="Models\Footer.cs" />
+    <Compile Include="Models\Menu.cs" />
+    <Compile Include="Models\MenuType.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductCategory.cs" />
+    <Compile Include="Models\Slide.cs" />
+    <Compile Include="Models\SystemConfig.cs" />
+    <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="OnlineShopMVCDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
@@ -73,15 +96,17 @@
     <EmbeddedResource Include="Migrations\201711251952347_Init.resx">
       <DependentUpon>201711251952347_Init.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261144259_ChangeStatusType.resx">
+      <DependentUpon>201711261144259_ChangeStatusType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261610501_UpdateModels.resx">
+      <DependentUpon>201711261610501_UpdateModels.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlineShopMVC.Common\OnlineShopMVC.Common.csproj">
       <Project>{7f79bc89-a8a1-41a6-981c-9e1d2408af5f}</Project>
       <Name>OnlineShopMVC.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OnlineShopMVC.Model\OnlineShopMVC.Model.csproj">
-      <Project>{1ed43866-80b1-46c7-9d3b-ee338c67408d}</Project>
-      <Name>OnlineShopMVC.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

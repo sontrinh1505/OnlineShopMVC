@@ -1,4 +1,4 @@
-namespace Models.Model
+namespace Data.Models
 {
     using System;
     using System.Collections.Generic;
@@ -6,15 +6,14 @@ namespace Models.Model
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Footer")]
-    public partial class Footer
+    [Table("Contact")]
+    public partial class Contact
     {
-        [StringLength(50)]
-        public string ID { get; set; }
+        public int ID { get; set; }
 
         [Column(TypeName = "ntext")]
         public string Content { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
     }
 }
