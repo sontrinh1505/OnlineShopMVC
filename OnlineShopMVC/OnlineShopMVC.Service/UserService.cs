@@ -20,7 +20,11 @@ namespace OnlineShopMVC.Service
 
         void Update(User User);
 
-        User Delete(int id);
+        bool Delete(long id);
+
+        bool UnlockUser(long id);
+
+        bool LockUser(long id);
 
         User GetUserByUserName(string UserName);
 
@@ -28,7 +32,7 @@ namespace OnlineShopMVC.Service
 
         IEnumerable<User> GetAllPaging(int page, int pageSize);
 
-        IEnumerable<User> GetAll(string keyWord);
+        IEnumerable<User> GetBlockUsers();
 
         IEnumerable<User> Search(string keyWord, int page, int pageSize, string sort, out int totalRow);
 
@@ -58,9 +62,18 @@ namespace OnlineShopMVC.Service
             return result;
         }
 
-        public User Delete(int id)
+        public bool Delete(long id)
         {
-            return _userRepository.Delete(id);
+            try
+            {
+                _userRepository.Delete(id);
+                Save();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }           
         }
 
         public IEnumerable<User> GetAll()
@@ -96,12 +109,50 @@ namespace OnlineShopMVC.Service
             return query.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
-        public void Update(User User)
+        public void Update(User user)
         {
-            User.ModifiedBy = SessionHelper.GetSession().UserID;
-            User.ModifiedDate = DateTime.Now;
-            _userRepository.Update(User);
+            user.ModifiedBy = SessionHelper.GetSession().UserID;
+            user.ModifiedDate = DateTime.Now;
+            if(user.PassWord != null)
+            {
+                user.PassWord = Encryptor.MD5Hash(user.PassWord);
+            }
+            _userRepository.Update(user);
         }
+
+        public bool UnlockUser(long id)
+        {
+            var user = GetById(id);
+
+            if(user != null)
+            {
+                user.Status = true;
+                user.ModifiedDate = DateTime.Now;
+                user.ModifiedBy = SessionHelper.GetSession().UserID;
+                _userRepository.Update(user);
+                Save();
+                return true;
+            }
+            return false;
+        }
+
+
+        public bool LockUser(long id)
+        {
+            var user = GetById(id);
+
+            if (user != null)
+            {
+                user.Status = false;
+                user.ModifiedDate = DateTime.Now;
+                user.ModifiedBy = SessionHelper.GetSession().UserID;
+                _userRepository.Update(user);
+                Save();
+                return true;
+            }
+            return false;
+        }
+
 
         public IEnumerable<User> GetAllPaging(int page, int pageSize)
         {
@@ -133,6 +184,11 @@ namespace OnlineShopMVC.Service
         public User GetUserByUserName(string UserName)
         {
             return _userRepository.GetSingleByCondition(x => x.UserName == UserName);
+        }
+
+        public IEnumerable<User> GetBlockUsers()
+        {
+            return _userRepository.GetMulti(x => x.Status == false);
         }
     }
 }

@@ -21,3 +21,15 @@
     padding: 7px;
     color: white;
 }
+
+.unlock{
+    background-color: #008fe5;
+    padding: 7px;
+    color: white;
+}
+
+.lock{
+    background-color: #ffc200;
+    padding: 7px;
+    color: white;
+}

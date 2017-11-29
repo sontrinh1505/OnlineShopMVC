@@ -23,8 +23,6 @@ namespace OnlineShopMVC.Areas.Admin.Controllers
             this._userService = _userService;
         }
 
-
-        // GET: Admin/Account
         public ActionResult Index(int page = 1, int pageSize = 10 )
         {
             var userList = _userService.GetAll().ToList();
@@ -33,6 +31,16 @@ namespace OnlineShopMVC.Areas.Admin.Controllers
             return View(result);
                       
         }
+
+        public ActionResult BlockList(int page = 1, int pageSize = 10)
+        {
+            var userList = _userService.GetBlockUsers().ToList();
+            var userListVM = userList.OrderBy(x => x.UserName).ToListViewModel();
+            var result = userListVM.ToPagedList(page, pageSize);
+            return View(result);
+
+        }
+
 
 
         [HttpGet]
@@ -64,11 +72,35 @@ namespace OnlineShopMVC.Areas.Admin.Controllers
 
 
 
-        [HttpGet]
         public ActionResult Edit(long id)
         {
             var user = _userService.GetById(id).ToViewModel();
             return View(user);
+        }
+
+
+        public ActionResult UnlockUser(long id)
+        {
+            var result = _userService.UnlockUser(id);
+            if(result)
+            {
+                ModelState.AddModelError("", "Can not unlock this user.");
+                
+            }
+
+            return RedirectToAction("BlockList");
+        }
+
+        public ActionResult LockUser(long id)
+        {
+            var result = _userService.UnlockUser(id);
+            if (!result)
+            {
+                ModelState.AddModelError("", "Can not lock this user.");
+
+            }
+
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -79,11 +111,23 @@ namespace OnlineShopMVC.Areas.Admin.Controllers
 
                 _userService.Update(user.ToModel());
                 _userService.Save();
-                return RedirectToAction("Index", "User");
+                return RedirectToAction("Index");
             }
             ModelState.AddModelError("", "Can not update user.");
 
             return View(user);
+        }
+
+        [HttpDelete]
+        public ActionResult Delete(long id)
+        {
+            var result = _userService.Delete(id);
+
+            if(!result)
+            {
+                ModelState.AddModelError("","Can not delete this user.");
+            }
+            return RedirectToAction("Index");
         }
     }
 }

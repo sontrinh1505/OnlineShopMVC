@@ -12,7 +12,7 @@
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2>All Users</h2>
+            <h2>Block Users</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
                     <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -44,7 +44,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th>Address</th>             
+                        <th>Address</th>
                         <th>Created Date</th>
                         <th>Modified Date</th>
                         <th>Status</th>
@@ -60,13 +60,13 @@
 
                             foreach (var item in Model)
                             {
-                                <tr id="item_@item.ID">
+                                <tr>
                                     <td>@item.UserName</td>
                                     @*<td>@item.PassWord</td>*@
                                     <td>@item.Name</td>
                                     <td>@item.Email</td>
                                     <td>@item.Phone</td>
-                                    <td>@item.Address</td>                                
+                                    <td>@item.Address</td>
                                     <td>
                                         @{
                                             string createdDate = "";
@@ -89,20 +89,18 @@
                                     </td>
 
                                     @{
+
                                         string status = "Blocked";
                                         if (item.Status)
                                         {
                                             status = "Active";
-                                            
                                         }
-                                        
                                     }
-                                    
                                     <td>@status</td>
+                                    @*<td>@Html.ActionLink("Unlock", "UnlockUser", "User", new { @id = @item.ID }, new { @class = "unlock" })</td>*@
 
-                                    <td>@Html.ActionLink("Edit","Edit","User", new { @id = @item.ID, @class="edit" }) @Ajax.ActionLink("Delete", "Delete", new { @id = item.ID}, new AjaxOptions { Confirm = "Do you want delete this user?", HttpMethod = "Delete", OnComplete = "$('#item_" + @item.ID + "').remove()"}, new { @class="delete"})</td>
+                                    <td> @Html.ActionLink("Edit", "Edit", "User", new { @id = @item.ID }, new { @class = "edit" }) @Ajax.ActionLink("Delete", "Delete", new { @id = item.ID }, new AjaxOptions { Confirm = "Do you want delete this user?", HttpMethod = "Delete", OnComplete = "$('#item_" + @item.ID + "').remove()" }, new { @class = "delete" })</td>
                                 </tr>
-                              
                                             }
 
                                         }
@@ -110,13 +108,8 @@
 
                 </tbody>
             </table>
-            
+
         </div>
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page, @pageSize = 10 }));
+        @Html.PagedListPager(Model, page => Url.Action("BlockList", new { page = page, @pageSize = 10 }));
     </div>
 </div>
-
-
-
-
-
