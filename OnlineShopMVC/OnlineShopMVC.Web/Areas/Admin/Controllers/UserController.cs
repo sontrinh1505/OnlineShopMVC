@@ -42,7 +42,6 @@ namespace OnlineShopMVC.Areas.Admin.Controllers
         }
 
 
-
         [HttpGet]
         public ActionResult Create()
         {
@@ -108,7 +107,6 @@ namespace OnlineShopMVC.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 _userService.Update(user.ToModel());
                 _userService.Save();
                 return RedirectToAction("Index");
