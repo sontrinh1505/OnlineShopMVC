@@ -1,35 +1,78 @@
-﻿.x_panel .x_content #create-category #Status{
+﻿.x_panel .x_content #create-category #Status {
     padding-bottom: 8px;
 }
 
-.x_panel .x_content #create-category .btn-primary a{
+.x_panel .x_content #create-category .btn-primary a {
     color: white;
 }
 
-.error{
+.error {
     color: red;
 }
 
-.edit{
+.edit {
     background-color: #1abb9c;
     padding: 7px;
     color: white;
+    border-radius: 5px;
 }
 
-.delete{
+.delete {
     background-color: red;
     padding: 7px;
     color: white;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
-.unlock{
+.unlock {
     background-color: #008fe5;
     padding: 7px;
     color: white;
 }
 
-.lock{
+.lock {
     background-color: #ffc200;
     padding: 7px;
     color: white;
+}
+
+.modal-header {
+    background-color: #ff6a00;
+}
+
+.modal-title {
+    color: white;
+}
+
+.modal-body {
+    color: black;
+}
+
+.modal-footer {
+    padding: 5px;
+}
+
+.btn-modal-cancel{
+    background: #3a4b63;
+    border: 1px solid #3a4b63;
+    color: white;
+}
+
+.btn-modal-cancel:hover{
+    background-color: white;
+    border: 1px solid #3a4b63;
+    color: #3a4b63;
+}
+
+.btn-modal-success{
+    background-color: #808080;
+    border-color: #808080;
+    color: white;
+}
+
+.btn-modal-success:hover{
+    background-color: white;
+    border-color: #808080;
+    color: #808080;
 }

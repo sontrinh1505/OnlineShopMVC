@@ -102,10 +102,10 @@
 
                                     <td>@Html.ActionLink("Edit","Edit","User", new { @id = @item.ID, @class="edit" }) 
                                         <!-- Button trigger modal -->
-                                        <button  type="button" class="bnt-delete-user btn btn-primary" data-toggle="modal" data-target="#popupModal" data-user-delete="@item.ID">
+                                        <a class="delete bnt-delete-user" data-toggle="modal" data-target="#popupModal" data-user-delete="@item.ID">
                                             Delete
-                                        </button>
-                                    @Ajax.ActionLink("Delete", "Delete", new { @id = item.ID}, new AjaxOptions { Confirm = "Do you want delete this user?", HttpMethod = "Delete", OnComplete = "$('#item_" + @item.ID + "').remove()"}, new { @class="delete"})
+                                        </a>
+                                    @*@Ajax.ActionLink("Delete", "Delete", new { @id = item.ID}, new AjaxOptions { Confirm = "Do you want delete this user?", HttpMethod = "Delete", OnComplete = "$('#item_" + @item.ID + "').remove()"}, new { @class="delete"})*@
                                     </td>
                                 </tr>
                               
