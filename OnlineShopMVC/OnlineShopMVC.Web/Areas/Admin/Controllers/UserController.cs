@@ -42,6 +42,7 @@ namespace OnlineShopMVC.Areas.Admin.Controllers
         }
 
 
+
         [HttpGet]
         public ActionResult Create()
         {
@@ -107,6 +108,7 @@ namespace OnlineShopMVC.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 _userService.Update(user.ToModel());
                 _userService.Save();
                 return RedirectToAction("Index");
@@ -116,16 +118,28 @@ namespace OnlineShopMVC.Areas.Admin.Controllers
             return View(user);
         }
 
-        [HttpDelete]
-        public ActionResult Delete(long id)
+        //[HttpDelete]
+        //public ActionResult Delete(long id)
+        //{
+        //    var result = _userService.Delete(id);
+
+        //    if(!result)
+        //    {
+        //        ModelState.AddModelError("","Can not delete this user.");
+        //    }
+        //    return RedirectToAction("Index");
+        //}
+
+        [HttpPost]
+        public JsonResult Delete(long id)
         {
             var result = _userService.Delete(id);
 
-            if(!result)
+            if (!result)
             {
-                ModelState.AddModelError("","Can not delete this user.");
+                ModelState.AddModelError("", "Can not delete this user.");
             }
-            return RedirectToAction("Index");
+            return Json(new { status = "Success"});
         }
     }
 }

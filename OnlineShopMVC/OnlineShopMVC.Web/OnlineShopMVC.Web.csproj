@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Custom\Custom.css" />
+    <Content Include="Areas\Admin\Custom\Custom.js" />
     <Content Include="Assets\Admin\build\css\custom.css" />
     <Content Include="Assets\Admin\build\css\custom.min.css" />
     <Content Include="Assets\Admin\build\images\back_disabled.png" />
@@ -3576,6 +3577,7 @@
     <Content Include="Assets\Admin\vendors\validator\validator.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Global.asax" />
+    <Content Include="Areas\Admin\Views\Shared\_Modal.cshtml" />
     <None Include="Scripts\jquery-1.8.0.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.0.js" />
     <Content Include="Scripts\jquery-1.8.0.min.js" />

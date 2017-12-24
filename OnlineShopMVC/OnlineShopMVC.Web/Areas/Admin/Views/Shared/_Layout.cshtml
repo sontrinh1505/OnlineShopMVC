@@ -44,6 +44,7 @@
 
 <body class="nav-md">
     <div class="container body">
+        @RenderPage("_Modal.cshtml");
         <div class="main_container">
             @RenderPage("_LeftMenu.cshtml");
 
@@ -128,5 +129,8 @@
     <script src="/Assets/Admin/vendors/jszip/dist/jszip.min.js"></script>
     <script src="/Assets/Admin/vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="/Assets/Admin/vendors/pdfmake/build/vfs_fonts.js"></script>*@
+
+    <script src="~/Areas/Admin/Custom/Custom.js"></script>
+
 </body>
 </html>
